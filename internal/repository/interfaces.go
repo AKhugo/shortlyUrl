@@ -13,3 +13,23 @@ type UserRepository interface {
 	DeleteUser(id uint) error
 	HardDeleteUser(id uint) error
 }
+
+// LinkRepository définit le contrat pour l'accès aux données des liens
+type LinkRepository interface {
+	CreateLink(link *domain.Link) error
+	GetLinkByID(id uint) (*domain.Link, error)
+	GetLinkByShortCode(shortCode string) (*domain.Link, error)
+	GetLinksByUserID(userID uint) ([]*domain.Link, error)
+	UpdateLink(link *domain.Link) error
+	DeleteLink(id uint) error
+	IncrementClickCount(id uint) error
+	GetLinkStats(id uint) ([]*domain.Click, error)
+}
+
+// ClickRepository définit le contrat pour l'accès aux données des clics
+type ClickRepository interface {
+	CreateClick(click *domain.Click) error
+	GetClicksByLinkID(linkID uint) ([]*domain.Click, error)
+	GetClickStats(linkID uint, filter *domain.ClickFilter) ([]*domain.Click, error)
+	DeleteClick(id uint) error
+}

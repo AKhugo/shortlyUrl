@@ -67,6 +67,7 @@ func (s *UserService) CreateUser(formUserData *domain.User) error {
 		LastFailedLoginIP:   "",
 	}
 
+	// 🎯 HERE : Call the Repository to SAVE
 	return s.userRepo.CreateUser(userData)
 }
 
